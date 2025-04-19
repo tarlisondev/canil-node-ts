@@ -7,19 +7,21 @@ import route from '../routes';
 
 const server = express();
 
+console.log(join(__dirname))
+
 // Configuração view do site
 server.set('view engine', 'mustache');
-server.set('views', join(__dirname, 'views'));
+server.set('views', join(__dirname, '../views'));
 server.engine('mustache', mustache());
 
-server.use(express.static(join(__dirname, '../public')));
+server.use(express.static(join(__dirname, '../../public')));
 
 // Rotas
 server.use(route);
 
 // Rotas error
 server.use((req, res) => {
-    res.send('pagina não encontrada')
+    res.render('pages/404')
 })
 
 
